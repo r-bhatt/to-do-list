@@ -1,26 +1,43 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useTasks } from './AppHooks';
+import TaskList from './TaskList/TaskList';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App = () => {
+    const [tasks, addTask, removeTask] = useTasks([]);
+    const [input, setInput] = React.useState('');
+
+    const handleChange = e => setInput(e.target.value);
+    const handleSubmit = () => {
+        addTask({id: createUUID(), input});
+        setInput('');
+    }
+    const handleEdit = task => {
+        removeTask(task);
+        setInput(task.input);
+    }
+       
+    const createUUID = () => Date.now();        // Temporary implementation, will change logic later
+
+    return (
+        <div>
+            <div className='header'>
+                To-Do List
+            </div>
+            <div className='content'>
+                <div className='search-bar'>
+                    <input type='text' value={input} onChange={handleChange} />
+                    <button onClick={handleSubmit}>+</button>
+                </div>
+                <div>
+                    <TaskList
+                        tasks={tasks}
+                        removeTask={removeTask}
+                        editTask={handleEdit}
+                    />
+                </div>
+            </div>
+        </div>
+    )
+};
 
 export default App;
