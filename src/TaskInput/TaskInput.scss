@@ -1,0 +1,38 @@
+$search-color:  rgb(2, 173, 2);
+
+.task-input {
+    display: flex;
+    border: 2px solid #666;
+    border-radius: 4px;
+    &:focus, &:hover {
+        border-color: $search-color;
+    }
+    &>input {
+        flex-grow: 1;
+        border: 0;
+        border-radius: 4px;
+        height: 18px;
+        padding: 8px 15px;
+        &:focus{
+            outline: none;
+        }
+    }
+    &>button{
+        border: 0;
+        border-radius: 4px;
+        background: transparent;
+        padding-right: 10px;
+        font-size: 16px;
+        line-height: 16px;
+        background-color: #fff;
+        &:focus{
+            outline: none;
+        }
+        &:hover{
+            cursor: pointer;
+        }
+    }
+    .fa-pen {
+        color: $search-color;
+    }
+}

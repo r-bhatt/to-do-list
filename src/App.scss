@@ -1,0 +1,30 @@
+
+.header {
+    background: #515070;
+    color: #f6f6f6;
+    font-size: 24px;
+    text-align: center;
+    padding: 12px;
+    margin-bottom: 24px;
+    @media screen and (min-width: 768px) {
+        font-size: 32px;
+        padding: 18px;
+    }
+}
+
+.content {
+    width: 90%;
+    margin: auto;
+    @media screen and (min-width: 768px) {
+        width: 70%;
+    }
+    @media screen and (min-width: 1024px) {
+        width: 50%;
+    }
+}
+
+
+
+.task-list {
+    margin-top: 24px;
+}

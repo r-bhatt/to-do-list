@@ -1,0 +1,35 @@
+.task-card {    
+    padding: 15px;
+    display: flex;
+    border-radius: 3px;
+    margin: 12px 0;
+    background: #ffbb91;
+    &>button {
+        margin: 0 5px;
+        background: transparent;
+        border: 0;
+        color: #931a25;
+        font-size: 16px;
+        &:focus{
+            outline: none;
+        }
+        &:hover{
+            font-size: 17px;
+            cursor: pointer;
+        }
+    }
+}
+
+.task-content {
+    color: #515070;
+    flex-grow: 1;
+}
+
+.task-head {
+    color: #515070;     
+    margin: 20px 0 10px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    font-weight: 600;
+}

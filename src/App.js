@@ -1,19 +1,17 @@
 import React from 'react';
+import './App.scss';
 import { useTasks } from './AppHooks';
+import TaskInput from './TaskInput/TaskInput';
 import TaskList from './TaskList/TaskList';
 
 const App = () => {
     const [tasks, addTask, removeTask] = useTasks([]);
-    const [input, setInput] = React.useState('');
-
-    const handleChange = e => setInput(e.target.value);
-    const handleSubmit = () => {
-        addTask({id: createUUID(), input});
-        setInput('');
-    }
+    const [editTask, setEditTask] = React.useState('');
+    
+    const handleSubmit = (input) => addTask({id: createUUID(), input});
     const handleEdit = task => {
         removeTask(task);
-        setInput(task.input);
+        setEditTask(task.input);
     }
        
     const createUUID = () => Date.now();        // Temporary implementation, will change logic later
@@ -24,11 +22,11 @@ const App = () => {
                 To-Do List
             </div>
             <div className='content'>
-                <div className='search-bar'>
-                    <input type='text' value={input} onChange={handleChange} />
-                    <button onClick={handleSubmit}>+</button>
-                </div>
-                <div>
+                <TaskInput
+                    defaultValue={editTask}
+                    onSubmit={handleSubmit}
+                />
+                <div className='task-list'>
                     <TaskList
                         tasks={tasks}
                         removeTask={removeTask}

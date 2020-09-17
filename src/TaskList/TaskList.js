@@ -1,4 +1,5 @@
 import React from 'react';
+import './TaskList.scss';
 
 const TaskList = ({tasks, removeTask, editTask}) => {
     return (
@@ -6,11 +7,19 @@ const TaskList = ({tasks, removeTask, editTask}) => {
             {tasks.length ?
                 (
                     <>
+                        <div className='task-head'>
+                            <span>My List</span>
+                            <span>Total Items: {tasks.length}</span>
+                        </div>
                         {tasks.map(task => (
-                            <div key={task.id}>
-                                {task.input}
-                                <button onClick={() => editTask(task)}>Edit</button>
-                                <button onClick={() => removeTask(task)}>-</button>
+                            <div key={task.id} className='task-card'>
+                                <span className='task-content'>{task.input}</span>
+                                <button onClick={() => editTask(task)}>
+                                    <i class="fas fa-pen"/>
+                                </button>
+                                <button onClick={() => removeTask(task)}>
+                                    <i class="fas fa-trash"/>
+                                </button>
                             </div>
                         ))}
                     </>
