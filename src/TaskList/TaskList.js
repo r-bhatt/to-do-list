@@ -15,10 +15,10 @@ const TaskList = ({tasks, removeTask, editTask}) => {
                             <div key={task.id} className='task-card'>
                                 <span className='task-content'>{task.input}</span>
                                 <button onClick={() => editTask(task)}>
-                                    <i class="fas fa-pen"/>
+                                    <i className="fas fa-pen"/>
                                 </button>
                                 <button onClick={() => removeTask(task)}>
-                                    <i class="fas fa-trash"/>
+                                    <i className="fas fa-trash"/>
                                 </button>
                             </div>
                         ))}
@@ -26,7 +26,9 @@ const TaskList = ({tasks, removeTask, editTask}) => {
 
                 ) :
                 (
-                    <p> List is empty </p>
+                    <div className='empty-list'>
+                        Add tasks to see them in the List
+                    </div>
                 )
             }
         </>

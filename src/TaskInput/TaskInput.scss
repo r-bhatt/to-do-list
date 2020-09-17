@@ -1,4 +1,5 @@
 $search-color:  rgb(2, 173, 2);
+$error-color: #c70032;
 
 .task-input {
     display: flex;
@@ -32,7 +33,23 @@ $search-color:  rgb(2, 173, 2);
             cursor: pointer;
         }
     }
-    .fa-pen {
+    .fa-plus {
         color: $search-color;
     }
+}
+
+.show-err {
+    .task-input {
+        border-color: $error-color;
+        &:focus{
+            border-color: $error-color;
+        }
+        .fa-plus {
+            color: $error-color;
+        }
+    }
+    .err-text {
+        color: $error-color;
+    }
+
 }

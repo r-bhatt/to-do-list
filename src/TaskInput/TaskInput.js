@@ -3,21 +3,49 @@ import './TaskInput.scss';
 
 const TaskInput = ({defaultValue, onSubmit}) => {
     const [input, setInput] = React.useState(defaultValue);
+    const [err, setErr] = React.useState('');
     const handleChange = e => setInput(e.target.value);
+    const inputRef = React.useRef();
+    
+    React.useEffect( () => {
+        setInput(defaultValue);
+        inputRef.current.focus();
+    }, [defaultValue] );
 
-    React.useEffect( () => {setInput(defaultValue)}, [defaultValue] );
+    const handleSubmit = () => {
+        if(validateInput(input)) {
+            onSubmit(input);
+            setInput('');   
+        }else {
+            setErr('Field cannot be empty!')
+        }
+    }
+
+    const handleKeys = e => {
+        setErr('');
+        if (e.key.toUpperCase() === 'ENTER') handleSubmit();
+    }
+
+    const validateInput = (text) => /^.+$/.test(text);
+    
     return (
-       <div className='task-input'>
-           <input
-               type='text'
-               value={input}
-               onChange={handleChange}
-               placeholder='Add a task...'
-           />
-           <button onClick={() => onSubmit('tasksks')}>
-               <i class="fas fa-pen" />
-           </button>
-       </div>
+        <div className={`${err ? 'show-err' : ''}`}>
+            <div className='task-input'>
+                <input
+                    type='text'
+                    value={input}
+                    onChange={handleChange}
+                    onKeyDown={handleKeys}
+                    placeholder='Add a task...'
+                    ref={inputRef}
+                />
+                <button onClick={handleSubmit}>
+                    <i className="fas fa-plus" />
+                </button>
+            </div>
+            {err && 
+            (<div className='err-text'> {err} </div>)}
+        </div>
     ) 
 }
 
