@@ -8,7 +8,10 @@ const App = () => {
     const [tasks, addTask, removeTask] = useTasks([]);
     const [editTask, setEditTask] = React.useState('');
     
-    const handleSubmit = (input) => addTask({id: createUUID(), input});
+    const handleSubmit = (input) => {
+        addTask({id: createUUID(), input});
+        setEditTask('');
+    };
     const handleEdit = task => {
         removeTask(task);
         setEditTask(task.input);
